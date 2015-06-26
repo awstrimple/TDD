@@ -59,7 +59,7 @@ class NewVisitorTest(LiveServerTestCase):
         ## We use a new browser to make sure that no information from
         ## Edith's session is saved, coming through from cookies, etc.
         self.browser.quit()
-        self.browser.webdriver.Firefox()
+        self.browser = webdriver.Firefox()
 
         # Francis visits the home page. No sign of Edith's list!
 
@@ -69,14 +69,14 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertNotIn('make a fly', page_text)
 
         # Francis starts a new list by entering a new item
-        inputbox = self.browser.fine_element_by_id('id_new_item')
+        inputbox = self.browser.find_element_by_id('id_new_item')
         inputbox.send_keys('Buy milk')
         inputbox.send_keys(Keys.ENTER)
 
         # Francis gets his own unique URL
         francis_list_url = self.browser.current_url
         self.assertRegex(francis_list_url, '/lists/.+')
-        self.assertNotEqual(francis_list_url, edith_list.url)
+        self.assertNotEqual(francis_list_url, edith_list_url)
 
         # Again, no trace of Edith's list
         page_text = self.browser.find_element_by_tag_name('body').text
