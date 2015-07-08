@@ -28,9 +28,9 @@ eg, on Ubuntu:
 Assume we have a user account at /home/username
 
 /home/username
-|__sites
-   |__SITENAME
-      |__database
-      |__source
-      |__static
-      |__virtualenv
++-- sites
+   +-- SITENAME
+      +-- database
+      +-- source
+      +-- static
+      +-- virtualenv
