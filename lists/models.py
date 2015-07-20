@@ -9,6 +9,6 @@ class List(models.Model):
 class Item(models.Model):
     
     text = models.TextField(null=True, default='')
-    list = models.ForeignKey(List, null=True, default=None)
+    list = models.ForeignKey(List, default=None)
 
 
